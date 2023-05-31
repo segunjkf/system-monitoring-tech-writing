@@ -1,0 +1,50 @@
+# config file version
+apiVersion: 1
+
+# list of datasources that should be deleted from the database
+deleteDatasources:
+  - name: Prometheus
+    orgId: 1
+
+# list of datasources to insert/update depending
+# whats available in the database
+datasources:
+  #  name of the datasource. Required
+  - name: Prometheus
+    #  datasource type. Required
+    type: prometheus
+    #  access mode. direct or proxy. Required
+    access: proxy
+    #  org id. will default to orgId 1 if not specified
+    orgId: 1
+    #  url
+    url: http://prometheus:9090
+    #  database password, if used
+    password:
+    #  database user, if used
+    user:
+    #  database name, if used
+    database:
+    #  enable/disable basic auth
+    basicAuth: false
+    #  basic auth username, if used
+    basicAuthUser:
+    #  basic auth password, if used
+    basicAuthPassword:
+    #  enable/disable with credentials headers
+    withCredentials:
+    #  mark as default datasource. Max one per org
+    isDefault: true
+    #  fields that will be converted to json and stored in json_data
+    jsonData:
+      graphiteVersion: "1.1"
+      tlsAuth: false
+      tlsAuthWithCACert: false
+    #  json object of data that will be encrypted.
+    secureJsonData:
+      tlsCACert: "..."
+      tlsClientCert: "..."
+      tlsClientKey: "..."
+    version: 1
+    #  allow users to edit datasources from the UI.
+    editable: true

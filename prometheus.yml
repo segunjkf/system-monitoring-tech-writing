@@ -1,0 +1,24 @@
+rule_files:
+  - "alert.rules"
+
+global:
+  scrape_interval: "30s"
+  evaluation_interval: 5s
+  external_labels:
+    env: Development
+
+scrape_configs: 
+  - job_name: "prometheus" 
+    scrape_interval: 30s 
+    static_configs: 
+      - targets: ["localhost:9090"]
+  - job_name: "node" 
+    static_configs: 
+      - targets: ["54.193.79.34:9100"]
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: 
+            - 'alertmanager:9093'
